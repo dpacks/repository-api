@@ -1,0 +1,52 @@
+{
+  "name": "@dpacks/api",
+  "version": "0.1.1",
+  "description": "dPacks.io Repository API Library.",
+  "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "dpacks-api": "database/init.js"
+  },
+  "scripts": {
+    "lint": "standard",
+    "clean-test": "rm -rf tests/vaultr && rm -rf tests/dwid.db && rm -rf tests/*.sqlite",
+    "test": "standard && npm run clean-test && NODE_ENV=test tape tests/*.js | tap-spec"
+  },
+  "dependencies": {
+    "@dwauth/core": "dwauth/core#master",
+    "@dwauth/reset-password": "dwauth/reset-password#master",
+    "@ddatabase/vaultr": "ddatabase/vaultr#master",
+    "@ddrive/core": "ddrives/core#master",
+    "@dpack/health": "dpacks/health#master",
+    "@dwcore/channel": "dwcore/channel#master",
+    "@dwebs/codec": "distributedweb/codec#master",
+    "@dwebs/resolve": "distributedweb/resolve#master",
+    "async": "^2.1.4",
+    "body-parser": "^1.15.2",
+    "co-express": "^2.0.0",
+    "debug": "^2.6.8",
+    "envify": "^4.0.0",
+    "is-my-json-valid": "^2.16.0",
+    "knex": "^0.12.6",
+    "level-party": "^3.0.4",
+    "mixpanel": "^0.7.0",
+    "mkdirp": "^0.5.1",
+    "nodemailer": "^4.0.1",
+    "nodemailer-mock-transport": "^1.3.0",
+    "range-parser": "^1.2.0",
+    "response": "^0.18.0",
+    "sqlite3": "^3.1.8",
+    "uparams": "^1.3.1",
+    "uuid": "^3.0.1",
+    "xtend": "^4.0.1"
+  },
+  "devDependencies": {
+    "rimraf": "^2.5.4",
+    "standard": "^7.1.2",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
