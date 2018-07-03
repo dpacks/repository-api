@@ -8,8 +8,8 @@ module.exports = Users
  * Interface between API requests and the database. Validation logic for
  * the incoming request goes here. If request is valid, will dispatch to database
  * methods.
- * @param {Object} auth dat registry Auth instance.
- * @param {Object} db   dat registry Database instance.
+ * @param {Object} auth dPack repository Auth instance.
+ * @param {Object} db   dPack repository Database instance.
  */
 function Users (auth, db) {
   if (!(this instanceof Users)) return new Users(auth, db)

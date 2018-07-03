@@ -5,7 +5,7 @@ const helpers = require('./helpers')
 const initDb = require('../database/init')
 var db
 var users = JSON.parse(JSON.stringify(helpers.users))
-var dats = JSON.parse(JSON.stringify(helpers.dats))
+var dpacks = JSON.parse(JSON.stringify(helpers.dpacks))
 delete users.joe.password
 delete users.bob.password
 delete users.admin.password
@@ -80,7 +80,7 @@ test('database should update a single user', function (t) {
   })
 })
 
-test('cant create two dats with the same name in the same account', function (t) {
+test('cant create two dPacks with the same name in the same account', function (t) {
   dpacks.cats.user_id = users.bob.id
   db.dpacks.create(dpacks.cats, function (err, body) {
     t.ifError(err)
@@ -107,7 +107,7 @@ test('database should delete a single user', function (t) {
   })
 })
 
-test('database should filter extra dat values', function (t) {
+test('database should filter extra dPack values', function (t) {
   dpacks.penguins.author = 'this is not a proper field'
   dpacks.penguins.keywords = ['fluffy', 'cute', 'swimmers']
   db.dpacks.create(dpacks.penguins, function (err, body) {

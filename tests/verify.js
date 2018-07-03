@@ -21,7 +21,7 @@ test('user signup whitelist should allow', function (t) {
 })
 
 test('user bad username should reject ', function (t) {
-  verify({email: 'bilbo@baggins.co.nz', username: 'dats'}, opts, function (err, status) {
+  verify({email: 'bilbo@baggins.co.nz', username: 'dpacks'}, opts, function (err, status) {
     t.true(err, 'should error')
     t.end()
   })

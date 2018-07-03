@@ -11,10 +11,10 @@ function DPacks (knex, config) {
 }
 
 /**
- * Create a dat in the database.
- * @param  {Object}   values The values of the new dat
+ * Create a dPack in the database.
+ * @param  {Object}   values The values of the new dPack
  * @param  {Function} cb     The callback.
- * @return {Object}          The dat as it appears in the database.
+ * @return {Object}          The dPack as it appears in the database.
  */
 DPacks.prototype.create = function (values, cb) {
   this.models.dpacks.create(this._validate(values), cb)
@@ -33,7 +33,7 @@ DPacks.prototype._validate = function (values) {
 }
 
 /**
- * Update a dat in the database.
+ * Update a dPack in the database.
  * @param  {Object}   where The query parameters to define which rows to update.
  * @param  {Object}   values The values to update.
  * @param  {Function} cb    The callback.
@@ -49,7 +49,7 @@ DPacks.prototype.get = function (where, cb) {
 }
 
 /**
- * Search the database for a dat. Can limit search by adding the 'fields'
+ * Search the database for a dPack. Can limit search by adding the 'fields'
  * which is an array of fields to include in the search.
  * @param  {Object}   where The parameters of the query, takes `limit`, `offset`, `query`, `fields`.
  * @param  {Function} cb    The callback.
@@ -57,7 +57,7 @@ DPacks.prototype.get = function (where, cb) {
 DPacks.prototype.search = function (where, cb) {
   var limit = where.limit
   var offset = where.offset || 0
-  var statement = 'SELECT users.username, dpacks.id, dpacks.url, dpacks.name, dpacks.created_at from dats inner join users on dpacks.user_id=users.id'
+  var statement = 'SELECT users.username, dpacks.id, dpacks.url, dpacks.name, dpacks.created_at from dpacks inner join users on dpacks.user_id=users.id'
   if (where.query) {
     if (!where.fields) where.fields = ['name', 'url', 'description', 'title', 'keywords']
     if (!Array.isArray(where.fields)) where.fields = where.fields.split(',')
@@ -79,7 +79,7 @@ DPacks.prototype.search = function (where, cb) {
 }
 
 /**
- * Delete a dat from the database.
+ * Delete a dPack from the database.
  * @param  {Object}   where A dictionary of params for deletion, id key required.
  * @param  {Function} cb    The callback.
  * @return {Number}         Number of rows deleted.
@@ -90,11 +90,11 @@ DPacks.prototype.delete = function (where, cb) {
 }
 
 /**
- * Get dats given their shortname -- username and dataset name.
+ * Get dPacks given their shortname -- username and dataset name.
  * TODO: make this method use underlying SQL for better performance.
  * @param  {Object}   params Username and dataset name.
  * @param  {Function} cb     The callback.
- * @return {Object}          The dat published by that username and dataset name.
+ * @return {Object}          The dPack published by that username and dataset name.
  */
 DPacks.prototype.getByShortname = function (params, cb) {
   var self = this
@@ -104,9 +104,9 @@ DPacks.prototype.getByShortname = function (params, cb) {
     var user = results[0]
     self.models.dpacks.get({user_id: user.id, name: params.dataset}, function (err, results) {
       if (err) return cb(err)
-      if (!results.length) return cb(new Error('Dat with that name not found.'))
-      var dat = results[0]
-      return cb(null, dat)
+      if (!results.length) return cb(new Error('dPack with that name not found.'))
+      var dpack = results[0]
+      return cb(null, dpack)
     })
   })
 }

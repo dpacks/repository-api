@@ -29,9 +29,9 @@ function init (cfg, cb) {
       })
     }
   })
-  db.knex.schema.hasTable('dats').then(function (exists) {
+  db.knex.schema.hasTable('dpacks').then(function (exists) {
     if (!exists) {
-      return db.knex.schema.createTable('dats', function (table) {
+      return db.knex.schema.createTable('dpacks', function (table) {
         table.uuid('id').primary()
         table.uuid('user_id').references('users.id')
         table.string('name')
