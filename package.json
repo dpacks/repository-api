@@ -1,6 +1,6 @@
 {
   "name": "@dpacks/api",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "dPacks.io Repository API Library.",
   "license": "MIT",
   "main": "index.js",
