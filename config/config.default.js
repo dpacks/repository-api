@@ -6,7 +6,7 @@ module.exports = {
     db: 'dwid.db'
   },
   email: {
-    from: 'fromemail-address-here',
+    from: 'noreply@dpacks.io',
     smtpConfig: undefined
   },
   db: {
