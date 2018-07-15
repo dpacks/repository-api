@@ -16,7 +16,7 @@ Platform:
 npm manifest: 
   {
     "name": "@dpacks/api",
-    "version": "0.1.8",
+    "version": "0.2.0",
     "description": "dPacks.io Repository API Library.",
     "license": "MIT",
     "main": "index.js",
