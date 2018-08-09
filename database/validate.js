@@ -1,7 +1,7 @@
 const validator = require('is-my-json-valid')
 
 module.exports = {
-  dpacks: validator({
+  dwebs: validator({
     properties: {
       name: {
         required: true,

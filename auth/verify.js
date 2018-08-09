@@ -8,7 +8,7 @@ module.exports = function verifyAccount (user, options, cb) {
     options = {}
   }
   var notAllowed = ['profile', 'user', 'edit', 'users', 'team', 'reset-password', 'browser', 'register', 'login',
-    'dpacks', 'view', 'api', 'install', 'download', 'explore', 'about', 'metadata', 'dpack']
+    'dwebs', 'view', 'api', 'install', 'download', 'explore', 'about', 'metadata', 'dweb']
   if (notAllowed.indexOf(user.username) > -1) return cb(new Error('Username not allowed'))
 
   if (!options.whitelist) {

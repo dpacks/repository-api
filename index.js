@@ -1,5 +1,5 @@
 const wrap = require('co-express')
-const DPacks = require('./api/dpacks')
+const DWebs = require('./api/dwebs')
 const Users = require('./api/users')
 const Auth = require('./auth')
 const database = require('./database')
@@ -9,13 +9,13 @@ const Config = require('./config')
 module.exports = function (input) {
   var config = Config(input)
   var db = config.database || database(config)
-  const vaultr = config.dpacks || Vaultr(config.vaultr)
+  const vaultr = config.dwebs || Vaultr(config.vaultr)
   const auth = Auth(config, db)
   var users = Users(auth, db)
-  var dpacks = DPacks(auth, db, vaultr)
+  var dwebs = DWebs(auth, db, vaultr)
 
   wrapAll(users)
-  wrapAll(dpacks)
+  wrapAll(dwebs)
 
   return {
     config: config,
@@ -23,7 +23,7 @@ module.exports = function (input) {
     auth: auth,
     vaultr: vaultr,
     users: users,
-    dpacks: dpacks,
+    dwebs: dwebs,
     close: function (cb) {
       db.knex.destroy(function () {
         vaultr.close(cb)

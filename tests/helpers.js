@@ -14,8 +14,8 @@ module.exports = {
     bob: {name: 'bob smob', username: 'bob', password: 'so secret', email: 'hi@bob.com', description: 'i like it', token: null},
     admin: {name: 'pam spam', username: 'admin', password: 'secret123', email: 'hi@pam.com', description: 'i dont eat it', token: null}
   },
-  dpacks: {
-    cats: {name: 'cats', url: 'dweb://ahashfordpacks', title: 'all of the cats', description: 'live on the corner of washington and 7th', keywords: 'furry, fluffy'},
+  dwebs: {
+    cats: {name: 'cats', url: 'dweb://ahashfordwebs', title: 'all of the cats', description: 'live on the corner of washington and 7th', keywords: 'furry, fluffy'},
     penguins: {name: 'penguins', url: 'dweb://ahashforpenguins', title: 'all of the penguins', description: 'lives in your house', keywords: 'sloppy, loud'},
     dogs: {name: 'dogs', url: 'dweb://ahashfordogs', title: 'all of the dogs', description: 'lives in your house', keywords: 'sloppy, loud'}
   }

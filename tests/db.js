@@ -5,7 +5,7 @@ const helpers = require('./helpers')
 const initDb = require('../database/init')
 var db
 var users = JSON.parse(JSON.stringify(helpers.users))
-var dpacks = JSON.parse(JSON.stringify(helpers.dpacks))
+var dwebs = JSON.parse(JSON.stringify(helpers.dwebs))
 delete users.joe.password
 delete users.bob.password
 delete users.admin.password
@@ -81,12 +81,12 @@ test('database should update a single user', function (t) {
 })
 
 test('cant create two dPacks with the same name in the same account', function (t) {
-  dpacks.cats.user_id = users.bob.id
-  db.dpacks.create(dpacks.cats, function (err, body) {
+  dwebs.cats.user_id = users.bob.id
+  db.dwebs.create(dwebs.cats, function (err, body) {
     t.ifError(err)
-    t.same(body.description, dpacks.cats.description, 'created the cats')
+    t.same(body.description, dwebs.cats.description, 'created the cats')
     t.ok(body.created_at, 'has created_at')
-    db.dpacks.create(dpacks.cats, function (err, body) {
+    db.dwebs.create(dwebs.cats, function (err, body) {
       t.ok(err)
       t.ok(err.message.indexOf('already exists'), 'already exists message')
       t.end()
@@ -108,11 +108,11 @@ test('database should delete a single user', function (t) {
 })
 
 test('database should filter extra dPack values', function (t) {
-  dpacks.penguins.author = 'this is not a proper field'
-  dpacks.penguins.keywords = ['fluffy', 'cute', 'swimmers']
-  db.dpacks.create(dpacks.penguins, function (err, body) {
+  dwebs.penguins.author = 'this is not a proper field'
+  dwebs.penguins.keywords = ['fluffy', 'cute', 'swimmers']
+  db.dwebs.create(dwebs.penguins, function (err, body) {
     t.ifError(err)
-    db.dpacks.get({id: body.id}, function (err, results) {
+    db.dwebs.get({id: body.id}, function (err, results) {
       t.ifError(err)
       var body = results[0]
       t.equal(body.author, undefined, 'author doesnt exist')

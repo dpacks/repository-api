@@ -1,10 +1,10 @@
-const debug = require('debug')('@dpacks/repository')
+const debug = require('debug')('@dwebs/repository')
 const models = require('./models')
 
-module.exports = DPacks
+module.exports = DWebs
 
-function DPacks (knex, config) {
-  if (!(this instanceof DPacks)) return new DPacks(knex, config)
+function DWebs (knex, config) {
+  if (!(this instanceof DWebs)) return new DWebs(knex, config)
   this.knex = knex
   this.models = models(knex)
   this.keys = ['name', 'user_id', 'url', 'name', 'description']
@@ -16,11 +16,11 @@ function DPacks (knex, config) {
  * @param  {Function} cb     The callback.
  * @return {Object}          The dPack as it appears in the database.
  */
-DPacks.prototype.create = function (values, cb) {
-  this.models.dpacks.create(this._validate(values), cb)
+DWebs.prototype.create = function (values, cb) {
+  this.models.dwebs.create(this._validate(values), cb)
 }
 
-DPacks.prototype._validate = function (values) {
+DWebs.prototype._validate = function (values) {
   var body = {}
 
   for (var i in this.keys) {
@@ -39,13 +39,13 @@ DPacks.prototype._validate = function (values) {
  * @param  {Function} cb    The callback.
  * @return {Number}         Number of rows updated.
  */
-DPacks.prototype.update = function (where, values, cb) {
+DWebs.prototype.update = function (where, values, cb) {
   if (!where.id) return cb(new Error('id required'))
-  this.models.dpacks.update({id: where.id}, this._validate(values), cb)
+  this.models.dwebs.update({id: where.id}, this._validate(values), cb)
 }
 
-DPacks.prototype.get = function (where, cb) {
-  this.models.dpacks.get(where, cb)
+DWebs.prototype.get = function (where, cb) {
+  this.models.dwebs.get(where, cb)
 }
 
 /**
@@ -54,17 +54,17 @@ DPacks.prototype.get = function (where, cb) {
  * @param  {Object}   where The parameters of the query, takes `limit`, `offset`, `query`, `fields`.
  * @param  {Function} cb    The callback.
  */
-DPacks.prototype.search = function (where, cb) {
+DWebs.prototype.search = function (where, cb) {
   var limit = where.limit
   var offset = where.offset || 0
-  var statement = 'SELECT users.username, dpacks.id, dpacks.url, dpacks.name, dpacks.created_at from dpacks inner join users on dpacks.user_id=users.id'
+  var statement = 'SELECT users.username, dwebs.id, dwebs.url, dwebs.name, dwebs.created_at from dwebs inner join users on dwebs.user_id=users.id'
   if (where.query) {
     if (!where.fields) where.fields = ['name', 'url', 'description', 'title', 'keywords']
     if (!Array.isArray(where.fields)) where.fields = where.fields.split(',')
     statement += ' WHERE '
     for (var key in where.fields) {
       var field = where.fields[key]
-      statement += 'dpacks.' + field + " LIKE '%" + where.query + "%'"
+      statement += 'dwebs.' + field + " LIKE '%" + where.query + "%'"
       if (key < where.fields.length - 1) statement += ' OR '
     }
     statement += (limit ? ' LIMIT ' + limit : '') +
@@ -84,9 +84,9 @@ DPacks.prototype.search = function (where, cb) {
  * @param  {Function} cb    The callback.
  * @return {Number}         Number of rows deleted.
  */
-DPacks.prototype.delete = function (where, cb) {
+DWebs.prototype.delete = function (where, cb) {
   if (!where.id) return cb(new Error('id required'))
-  this.models.dpacks.delete(where, cb)
+  this.models.dwebs.delete(where, cb)
 }
 
 /**
@@ -96,17 +96,17 @@ DPacks.prototype.delete = function (where, cb) {
  * @param  {Function} cb     The callback.
  * @return {Object}          The dPack published by that username and dataset name.
  */
-DPacks.prototype.getByShortname = function (params, cb) {
+DWebs.prototype.getByShortname = function (params, cb) {
   var self = this
   self.models.users.get({username: params.username}, function (err, results) {
     if (err) return cb(err)
     if (!results.length) return cb(new Error('Username not found.'))
     var user = results[0]
-    self.models.dpacks.get({user_id: user.id, name: params.dataset}, function (err, results) {
+    self.models.dwebs.get({user_id: user.id, name: params.dataset}, function (err, results) {
       if (err) return cb(err)
       if (!results.length) return cb(new Error('dPack with that name not found.'))
-      var dpack = results[0]
-      return cb(null, dpack)
+      var dweb = results[0]
+      return cb(null, dweb)
     })
   })
 }

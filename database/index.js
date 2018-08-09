@@ -1,6 +1,6 @@
 var Knex = require('knex')
 var Users = require('./users')
-var DPacks = require('./dpacks')
+var DWebs = require('./dwebs')
 
 module.exports = function (config) {
   if (!config.db) throw new Error('config.db required! Must be a knex compatible object.')
@@ -9,7 +9,7 @@ module.exports = function (config) {
   var db = {
     knex: knex,
     users: Users(knex, config),
-    dpacks: DPacks(knex, config)
+    dwebs: DWebs(knex, config)
   }
   return db
 }
