@@ -1,6 +1,6 @@
 {
   "name": "@dpacks/api",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "dPacks.io Repository API Library.",
   "license": "MIT",
   "main": "index.js",
@@ -19,8 +19,8 @@
     "@dwauth/core": "*",
     "@dwauth/reset-password": "*",
     "@dwcore/channel": "*",
-    "@dwebs/codec": "~0.1.6",
-    "@dwebs/resolve": "~0.1.4",
+    "@dwebs/codec": "~0.1.7",
+    "@dwebs/resolve": "~0.1.5",
     "async": "^2.1.4",
     "body-parser": "^1.15.2",
     "co-express": "^2.0.0",
